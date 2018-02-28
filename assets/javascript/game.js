@@ -106,6 +106,9 @@ $(document).ready(function () {
     $('#done').hide()
     $('#questAns').hide()
     $('#results').show()
+    $('#wins').text(game.wins)
+    $('#losses').text(game.losses)
+    $('#noAns').text(game.noAns)
   })
 
 
