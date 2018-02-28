@@ -84,49 +84,80 @@ $(document).ready(function () {
     losses: 0,
     noAns: 0
   };
-  //making clock
-  var countDown = {
-    time: 60000
+  var counter;
+
+  //making countDown function
+  function runTimer() {
+    var time = 30;
+    counter = setInterval(function () {
+      time = time - 1;
+      if (time <= 0) {
+        clearInterval(counter);
+        endGame();
+      } else {
+        $('#display').text(time);
+      }
+    }, 1000); //setInterval function
   }
-  $('#questAns').hide()
-  $('#done').hide()
-  $('#results').hide()
-  //$('#questions').hide()
+
+  function endGame () {
+    $('.answered:checked').each(function () {
+      if ($(this).data('answer') == true) {
+        ++game.wins;
+      } else {
+        ++game.losses;
+      }
+    }) //.each
+    game.noAns = questions.length - game.wins - game.losses;
+    console.log(`wins: ` + game.wins + ` losses: ` + game.losses + ` no answers: ` + game.noAns);
+    $('#done').hide();
+    $('#questAns').hide();
+    $('#results').show();
+    $('#wins').text(game.wins);
+    $('#losses').text(game.losses);
+    $('#noAns').text(game.noAns);
+    $('#restart').show();
+  }
+  function restart () {
+    $('#restart').hide();
+    $('#questAns').hide();
+    $('#done').hide();
+    $('#results').hide();
+    $('#start').show();
+  }
+
+  
+  restart();
 
   $('#start').on('click', function (e) {
     //remove start button
-    $(this).hide()
-    $('#questAns').show()
-    $('#questAns').append(`<div class="row question"></div>`)
+    $(this).hide();
+    $('#questAns').show();
+    $('#questAns').append(`<div class="row question"></div>`);
     // var answers = []
     questions.forEach(function (q, index) {
       // console.log(q)
-      $('#questAns').append(`<div class="row question"><div class="btn-group" data-toggle="buttons"><p>${q.question}</p><ul class="options-${index}"></ul></div></div>`)
+      $('#questAns').append(`<div class="row question"><div class="btn-group" data-toggle="buttons"><p>${q.question}</p><ul class="options-${index}"></ul></div></div>`);
       q.answer.forEach(function (answer, i) {
         // console.log(answer)
-        $(`.options-${index}`).append(`<li><input type="radio" name="answer-${index}" class="answered option-${i}"data-answer=${answer.correct}>${answer.guess}</li>`)
-      })
-    })
-    $('#done').show()
-  })
+        $(`.options-${index}`).append(`<li><input type="radio" name="answer-${index}" class="answered option-${i}"data-answer=${answer.correct}>${answer.guess}</li>`);
+      }); //q.answer for each
+    }); //questions for each
+    $('#done').show();
+    //start count down from 60 seconds
 
-  $('#done').on('click', function (e) {
-    $('.answered:checked').each(function (a) {
-      if ($(this).data('answer') == true) {
-        ++game.wins
-      } else {
-        ++game.losses
-      }
-    }) //.each
-    game.noAns = questions.length - game.wins - game.losses
-    console.log(`wins: ` + game.wins + ` losses: ` + game.losses + ` no answers: ` + game.noAns)
-    $('#done').hide()
-    $('#questAns').hide()
-    $('#results').show()
-    $('#wins').text(game.wins)
-    $('#losses').text(game.losses)
-    $('#noAns').text(game.noAns)
-  })
+    runTimer();
+
+  }); // start on click
+
+  $('#done').on('click', function () {
+    clearInterval(counter);
+    endGame();
+  }); //done on click
+
+  $('#restart').on('click',function () {
+    restart();
+  });
 
 
 }); //$(document).ready(function ()
