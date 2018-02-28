@@ -1,0 +1,45 @@
+body {
+    font-family: 'Fredoka One', cursive;
+}
+
+header {
+    background: yellowgreen;
+    text-align: center;
+    font-size: 110%;
+}
+.container {
+    text-align: center;
+}
+
+section {
+    background: lightblue;
+    font-size: 120%;
+}
+button {
+    word-wrap: break-word;
+}
+#quartz {
+    background: beige;
+}
+
+#fluorite {
+    background: brown;
+}
+
+#hematite {
+    background:black;
+    color: white;
+
+}
+
+#amethyst {
+    background: orange;
+
+}
+
+.row {
+    text-align: center;
+}
+ul {
+    list-style: none;
+}
