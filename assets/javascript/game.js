@@ -98,14 +98,4 @@ $(document).ready(function () {
   })
 
 
-/* At beginning present start button
-
-on start button click
-  start timer
-  loop through Questions and create a row for the question and a row containing all answers
-  place the correct flag as an attribute on each button
-
-
-*/
-
 }); //$(document).ready(function ()
