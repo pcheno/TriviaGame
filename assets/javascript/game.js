@@ -99,9 +99,9 @@ $(document).ready(function () {
       } else {
         ++game.losses
       }
-      game.noAns = questions.length - game.wins - game.losses
-
     }) //.each
+    game.noAns = questions.length - game.wins - game.losses
+    console.log(`wins: `+game.wins+` losses: `+game.losses+` no answers: `+game.noAns)
   })
 
 
