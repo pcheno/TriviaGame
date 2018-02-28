@@ -61,10 +61,10 @@ $(document).ready(function () {
       guess: "Angela Lansbury",
       correct: false
     }]
-  },{
+  }, {
     question: "Who was President of the United States in 1971?",
     answer: [{
-      guess: "Geral Ford",
+      guess: "Gerald Ford",
       correct: false
     }, {
       guess: "Lyndon B. Johnson",
@@ -80,12 +80,15 @@ $(document).ready(function () {
 
   // Creating variables to hold the number of wins, losses, and un-answered.
   var game = {
-    "wins": 0,
-    "losses": 0,
-    "noAns": 0
+    wins: 0,
+    losses: 0,
+    noAns: 0
   };
-
-
+  //making clock
+  var countDown = {
+    time: 60000
+  }
+  $('#questAns').hide()
   $('#done').hide()
   $('#results').hide()
   //$('#questions').hide()
@@ -93,8 +96,9 @@ $(document).ready(function () {
   $('#start').on('click', function (e) {
     //remove start button
     $(this).hide()
+    $('#questAns').show()
     $('#questAns').append(`<div class="row question"></div>`)
-   // var answers = []
+    // var answers = []
     questions.forEach(function (q, index) {
       // console.log(q)
       $('#questAns').append(`<div class="row question"><div class="btn-group" data-toggle="buttons"><p>${q.question}</p><ul class="options-${index}"></ul></div></div>`)
@@ -115,7 +119,7 @@ $(document).ready(function () {
       }
     }) //.each
     game.noAns = questions.length - game.wins - game.losses
-    console.log(`wins: `+game.wins+` losses: `+game.losses+` no answers: `+game.noAns)
+    console.log(`wins: ` + game.wins + ` losses: ` + game.losses + ` no answers: ` + game.noAns)
     $('#done').hide()
     $('#questAns').hide()
     $('#results').show()
