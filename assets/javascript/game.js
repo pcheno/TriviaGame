@@ -61,6 +61,21 @@ $(document).ready(function () {
       guess: "Angela Lansbury",
       correct: false
     }]
+  },{
+    question: "Who was President of the United States in 1971?",
+    answer: [{
+      guess: "Geral Ford",
+      correct: false
+    }, {
+      guess: "Lyndon B. Johnson",
+      correct: false
+    }, {
+      guess: "Jimmy Carter",
+      correct: false
+    }, {
+      guess: "Richard Nixon",
+      correct: true
+    }]
   }];
 
   // Creating variables to hold the number of wins, losses, and un-answered.
@@ -76,12 +91,10 @@ $(document).ready(function () {
   //$('#questions').hide()
 
   $('#start').on('click', function (e) {
-    // console.log(this)
-    // $(this).hide()
-    // $('#questions').show()
+    //remove start button
     $(this).hide()
     $('#questAns').append(`<div class="row question"></div>`)
-    var answers = []
+   // var answers = []
     questions.forEach(function (q, index) {
       // console.log(q)
       $('#questAns').append(`<div class="row question"><div class="btn-group" data-toggle="buttons"><p>${q.question}</p><ul class="options-${index}"></ul></div></div>`)
