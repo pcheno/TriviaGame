@@ -70,31 +70,38 @@ $(document).ready(function () {
     "noAns": 0
   };
 
-  
 
+  $('#done').hide()
   $('#questions').hide()
 
-  $('#start').on('click', function(e) {
+  $('#start').on('click', function (e) {
     // console.log(this)
     // $(this).hide()
     // $('#questions').show()
+    $(this).hide()
     $('#questAns').append(`<div class="row question"></div>`)
     var answers = []
-    questions.forEach(function(q, index) {
+    questions.forEach(function (q, index) {
       // console.log(q)
       $('#questAns').append(`<div class="row question"><div class="btn-group" data-toggle="buttons"><p>${q.question}</p><ul class="options-${index}"></ul></div></div>`)
-      q.answer.forEach(function(answer, i) {
+      q.answer.forEach(function (answer, i) {
         // console.log(answer)
         $(`.options-${index}`).append(`<li><input type="radio" name="answer-${index}" class="answered option-${i}"data-answer=${answer.correct}>${answer.guess}</li>`)
       })
     })
+    $('#done').show()
   })
 
-  $('#done').on('click', function(e) {
-    $('.answered:checked').each(function(a){
-      console.log('checked', $(this).data('answer'))
-      
-    })
+  $('#done').on('click', function (e) {
+    $('.answered:checked').each(function (a) {
+      if ($(this).data('answer') == true) {
+        ++game.wins
+      } else {
+        ++game.losses
+      }
+      game.noAns = questions.length - game.wins - game.losses
+
+    }) //.each
   })
 
 
