@@ -72,7 +72,8 @@ $(document).ready(function () {
 
 
   $('#done').hide()
-  $('#questions').hide()
+  $('#results').hide()
+  //$('#questions').hide()
 
   $('#start').on('click', function (e) {
     // console.log(this)
@@ -102,6 +103,9 @@ $(document).ready(function () {
     }) //.each
     game.noAns = questions.length - game.wins - game.losses
     console.log(`wins: `+game.wins+` losses: `+game.losses+` no answers: `+game.noAns)
+    $('#done').hide()
+    $('#questAns').hide()
+    $('#results').show()
   })
 
 
