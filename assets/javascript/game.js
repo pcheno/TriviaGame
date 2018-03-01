@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  // Creates an array containing objects with questions and answers
+  // Creates an array containing objects with questions and answers. Mark the correct and incorrect with boolean values
 
   var questions = [{
     question: "What pop star was known as The man of a thousand glasses?",
@@ -84,23 +84,24 @@ $(document).ready(function () {
     losses: 0,
     noAns: 0
   };
+  // Timer variables
   var counter;
   var time = 30;
 
   //making countDown function
   function runTimer() {
-    //var time = 30;
     counter = setInterval(function () {
       time = time - 1;
       $('#timer').text(time)
       if (time <= 0) {
         clearInterval(counter);
-        endGame();
+        endGame();  //game over
       } 
     }, 1000); //setInterval function
   }  // function runTimer
 
   function endGame() {
+    //only interested in those checked
     $('.answered:checked').each(function () {
       if ($(this).data('answer') == true) {
         ++game.wins;
@@ -110,7 +111,7 @@ $(document).ready(function () {
     }) //.each
     //get the no answers by subtracting wins and losses from the number of questions
     game.noAns = questions.length - game.wins - game.losses;
-   
+   // update divs hide/show set text
     $('#done').hide();
     $('#questAns').empty();
     $('#questAns').hide();
@@ -119,7 +120,6 @@ $(document).ready(function () {
     $('#losses').text(game.losses);
     $('#noAns').text(game.noAns);
     $('#restart').show();
-    //$('#display').hide();
   }  //function endGame
 
   function restart() {
@@ -135,27 +135,25 @@ $(document).ready(function () {
     game.wins = 0;
   }  // function restart
 
-
+  //start here and then wait for clicks
   restart();
 
   $('#start').on('click', function (e) {
-    //remove start button
     $(this).hide();
     $('#questAns').show();
     $('#questAns').append(`<div class="row question"></div>`);
-
+    // create div containing the question and a ul to put the answer into
     questions.forEach(function (q, index) {
       $('#questAns').append(`<div class="row question"><div class="btn-group" data-toggle="buttons"><p>${q.question}</p><ul class="options-${index}"></ul></div></div>`);
+      // with the ul created above, now put the answer as a li into it, and assign the correct (true/false)
       q.answer.forEach(function (answer, i) {
         $(`.options-${index}`).append(`<li><input type="radio" name="answer-${index}" class="answered option-${i}"data-answer=${answer.correct}>${answer.guess}</li>`);
       }); //q.answer for each
     }); //questions for each
     $('#done').show();
     $('#display').show();
-    //time = 30;
     $('#timer').text(time);
     runTimer();
-
   }); // start on click
 
   $('#done').on('click', function () {
