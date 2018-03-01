@@ -100,7 +100,7 @@ $(document).ready(function () {
     }, 1000); //setInterval function
   }
 
-  function endGame () {
+  function endGame() {
     $('.answered:checked').each(function () {
       if ($(this).data('answer') == true) {
         ++game.wins;
@@ -111,22 +111,26 @@ $(document).ready(function () {
     game.noAns = questions.length - game.wins - game.losses;
     console.log(`wins: ` + game.wins + ` losses: ` + game.losses + ` no answers: ` + game.noAns);
     $('#done').hide();
+    $('#questAns').empty();
     $('#questAns').hide();
     $('#results').show();
     $('#wins').text(game.wins);
     $('#losses').text(game.losses);
     $('#noAns').text(game.noAns);
     $('#restart').show();
+    $('#display').hide();
   }
-  function restart () {
+
+  function restart() {
     $('#restart').hide();
     $('#questAns').hide();
     $('#done').hide();
     $('#results').hide();
+   // $('#display').show();
     $('#start').show();
   }
 
-  
+
   restart();
 
   $('#start').on('click', function (e) {
@@ -145,7 +149,7 @@ $(document).ready(function () {
     }); //questions for each
     $('#done').show();
     //start count down from 60 seconds
-
+    $('#display').show();
     runTimer();
 
   }); // start on click
@@ -155,7 +159,7 @@ $(document).ready(function () {
     endGame();
   }); //done on click
 
-  $('#restart').on('click',function () {
+  $('#restart').on('click', function () {
     restart();
   });
 
