@@ -85,10 +85,11 @@ $(document).ready(function () {
     noAns: 0
   };
   var counter;
+  var time = 30;
 
   //making countDown function
   function runTimer() {
-    var time = 30;
+    //var time = 30;
     counter = setInterval(function () {
       time = time - 1;
       if (time <= 0) {
@@ -109,7 +110,7 @@ $(document).ready(function () {
       }
     }) //.each
     game.noAns = questions.length - game.wins - game.losses;
-    console.log(`wins: ` + game.wins + ` losses: ` + game.losses + ` no answers: ` + game.noAns);
+   
     $('#done').hide();
     $('#questAns').empty();
     $('#questAns').hide();
@@ -126,8 +127,12 @@ $(document).ready(function () {
     $('#questAns').hide();
     $('#done').hide();
     $('#results').hide();
-   // $('#display').show();
+    $('#display').hide();
     $('#start').show();
+    time = 30;
+    game.noAns = 0;
+    game.losses = 0;
+    game.wins = 0;
   }
 
 
@@ -150,6 +155,8 @@ $(document).ready(function () {
     $('#done').show();
     //start count down from 60 seconds
     $('#display').show();
+    time = 30;
+    $('#display').text(time);
     runTimer();
 
   }); // start on click
