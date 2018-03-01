@@ -113,7 +113,6 @@ $(document).ready(function () {
     game.noAns = questions.length - game.wins - game.losses;
     // update divs hide/show set text
     $('#done').hide();
-    $('#questAns').empty();
     $('#questAns').hide();
     $('#results').show();
     $('#wins').text(game.wins);
@@ -124,18 +123,15 @@ $(document).ready(function () {
 
   function restart() {
     $('#restart').hide();
-    $('#questAns').hide();
-    $('#done').hide();
     $('#results').hide();
-    $('#display').hide();
-    $('#start').show();
-    time = 30;
+    time = 220;
     game.noAns = 0;
     game.losses = 0;
     game.wins = 0;
   } // function restart
 
   function gameOn() {
+    $('#questAns').empty();
     $('#start').hide();
     $('#questAns').show();
     $('#questAns').append(`<div class="row question"></div>`);
@@ -154,7 +150,13 @@ $(document).ready(function () {
   } // function gameOn
 
   //start here and then wait for clicks
-  restart();
+  $('#results').hide();
+  $('#restart').hide();
+  $('#done').hide();
+  $('#display').hide();
+  $('#questAns').hide();
+  $('#start').show();
+
 
   $('#start').on('click', function () {
     gameOn();

@@ -25,6 +25,7 @@ button {
 ul {
     list-style: none;
     text-align: left;
+    clear: both;
 }
 
 #display {
