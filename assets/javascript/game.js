@@ -99,7 +99,7 @@ $(document).ready(function () {
         $('#display').text(time);
       }
     }, 1000); //setInterval function
-  }
+  }  // function runTimer
 
   function endGame() {
     $('.answered:checked').each(function () {
@@ -120,7 +120,7 @@ $(document).ready(function () {
     $('#noAns').text(game.noAns);
     $('#restart').show();
     $('#display').hide();
-  }
+  }  //function endGame
 
   function restart() {
     $('#restart').hide();
@@ -133,7 +133,7 @@ $(document).ready(function () {
     game.noAns = 0;
     game.losses = 0;
     game.wins = 0;
-  }
+  }  // function restart
 
 
   restart();
@@ -143,19 +143,17 @@ $(document).ready(function () {
     $(this).hide();
     $('#questAns').show();
     $('#questAns').append(`<div class="row question"></div>`);
-    // var answers = []
+
     questions.forEach(function (q, index) {
-      // console.log(q)
       $('#questAns').append(`<div class="row question"><div class="btn-group" data-toggle="buttons"><p>${q.question}</p><ul class="options-${index}"></ul></div></div>`);
       q.answer.forEach(function (answer, i) {
-        // console.log(answer)
         $(`.options-${index}`).append(`<li><input type="radio" name="answer-${index}" class="answered option-${i}"data-answer=${answer.correct}>${answer.guess}</li>`);
       }); //q.answer for each
     }); //questions for each
     $('#done').show();
     //start count down from 60 seconds
     $('#display').show();
-    time = 30;
+    //time = 30;
     $('#display').text(time);
     runTimer();
 
@@ -168,7 +166,7 @@ $(document).ready(function () {
 
   $('#restart').on('click', function () {
     restart();
-  });
+  });  // restart on click
 
 
 }); //$(document).ready(function ()
