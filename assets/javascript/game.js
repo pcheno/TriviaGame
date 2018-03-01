@@ -118,11 +118,11 @@ $(document).ready(function () {
     $('#wins').text(game.wins);
     $('#losses').text(game.losses);
     $('#noAns').text(game.noAns);
-    $('#restart').show();
+    $('#start').show();
   } //function endGame
 
   function restart() {
-    $('#restart').hide();
+    //$('#restart').hide();
     $('#results').hide();
     time = 220;
     game.noAns = 0;
@@ -151,14 +151,13 @@ $(document).ready(function () {
 
   //start here and then wait for clicks
   $('#results').hide();
-  $('#restart').hide();
   $('#done').hide();
   $('#display').hide();
-  $('#questAns').hide();
-  $('#start').show();
+  //$('#start').show();
 
 
   $('#start').on('click', function () {
+    restart();
     gameOn();
   }); // start on click
 
@@ -167,10 +166,6 @@ $(document).ready(function () {
     endGame();
   }); //done on click
 
-  $('#restart').on('click', function () {
-    restart();
-    gameOn();
-  }); // restart on click
 
 
 }); //$(document).ready(function ()
