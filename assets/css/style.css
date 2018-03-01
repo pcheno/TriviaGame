@@ -18,28 +18,15 @@ section {
 button {
     word-wrap: break-word;
 }
-#quartz {
-    background: beige;
-}
 
-#fluorite {
-    background: brown;
-}
-
-#hematite {
-    background:black;
-    color: white;
-
-}
-
-#amethyst {
-    background: orange;
-
-}
 
 .row {
     text-align: center;
 }
 ul {
     list-style: none;
+}
+
+#display {
+    font-size: 140%;
 }

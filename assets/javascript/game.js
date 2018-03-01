@@ -92,12 +92,11 @@ $(document).ready(function () {
     //var time = 30;
     counter = setInterval(function () {
       time = time - 1;
+      $('#timer').text(time)
       if (time <= 0) {
         clearInterval(counter);
         endGame();
-      } else {
-        $('#display').text(time);
-      }
+      } 
     }, 1000); //setInterval function
   }  // function runTimer
 
@@ -109,6 +108,7 @@ $(document).ready(function () {
         ++game.losses;
       }
     }) //.each
+    //get the no answers by subtracting wins and losses from the number of questions
     game.noAns = questions.length - game.wins - game.losses;
    
     $('#done').hide();
@@ -119,7 +119,7 @@ $(document).ready(function () {
     $('#losses').text(game.losses);
     $('#noAns').text(game.noAns);
     $('#restart').show();
-    $('#display').hide();
+    //$('#display').hide();
   }  //function endGame
 
   function restart() {
@@ -151,10 +151,9 @@ $(document).ready(function () {
       }); //q.answer for each
     }); //questions for each
     $('#done').show();
-    //start count down from 60 seconds
     $('#display').show();
     //time = 30;
-    $('#display').text(time);
+    $('#timer').text(time);
     runTimer();
 
   }); // start on click
