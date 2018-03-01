@@ -95,10 +95,10 @@ $(document).ready(function () {
       $('#timer').text(time)
       if (time <= 0) {
         clearInterval(counter);
-        endGame();  //game over
-      } 
+        endGame(); //game over
+      }
     }, 1000); //setInterval function
-  }  // function runTimer
+  } // function runTimer
 
   function endGame() {
     //only interested in those checked
@@ -111,7 +111,7 @@ $(document).ready(function () {
     }) //.each
     //get the no answers by subtracting wins and losses from the number of questions
     game.noAns = questions.length - game.wins - game.losses;
-   // update divs hide/show set text
+    // update divs hide/show set text
     $('#done').hide();
     $('#questAns').empty();
     $('#questAns').hide();
@@ -120,7 +120,7 @@ $(document).ready(function () {
     $('#losses').text(game.losses);
     $('#noAns').text(game.noAns);
     $('#restart').show();
-  }  //function endGame
+  } //function endGame
 
   function restart() {
     $('#restart').hide();
@@ -133,13 +133,10 @@ $(document).ready(function () {
     game.noAns = 0;
     game.losses = 0;
     game.wins = 0;
-  }  // function restart
+  } // function restart
 
-  //start here and then wait for clicks
-  restart();
-
-  $('#start').on('click', function (e) {
-    $(this).hide();
+  function gameOn() {
+    $('#start').hide();
     $('#questAns').show();
     $('#questAns').append(`<div class="row question"></div>`);
     // create div containing the question and a ul to put the answer into
@@ -154,6 +151,13 @@ $(document).ready(function () {
     $('#display').show();
     $('#timer').text(time);
     runTimer();
+  } // function gameOn
+
+  //start here and then wait for clicks
+  restart();
+
+  $('#start').on('click', function () {
+    gameOn();
   }); // start on click
 
   $('#done').on('click', function () {
@@ -163,7 +167,8 @@ $(document).ready(function () {
 
   $('#restart').on('click', function () {
     restart();
-  });  // restart on click
+    gameOn();
+  }); // restart on click
 
 
 }); //$(document).ready(function ()

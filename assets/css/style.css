@@ -5,7 +5,7 @@ body {
 header {
     background: yellowgreen;
     text-align: center;
-    font-size: 110%;
+    font-size: 160%;
 }
 .container {
     text-align: center;
@@ -19,12 +19,12 @@ button {
     word-wrap: break-word;
 }
 
-
 .row {
     text-align: center;
 }
 ul {
     list-style: none;
+    text-align: left;
 }
 
 #display {
