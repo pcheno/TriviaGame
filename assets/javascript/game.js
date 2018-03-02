@@ -122,9 +122,8 @@ $(document).ready(function () {
   } //function endGame
 
   function restart() {
-    //$('#restart').hide();
     $('#results').hide();
-    time = 220;
+    time = 30;
     game.noAns = 0;
     game.losses = 0;
     game.wins = 0;
@@ -153,7 +152,6 @@ $(document).ready(function () {
   $('#results').hide();
   $('#done').hide();
   $('#display').hide();
-  //$('#start').show();
 
 
   $('#start').on('click', function () {
