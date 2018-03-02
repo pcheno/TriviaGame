@@ -1,6 +1,5 @@
 $(document).ready(function () {
   // Creates an array containing objects with questions and answers. Mark the correct and incorrect with boolean values
-
   var questions = [{
     question: "What pop star was known as The man of a thousand glasses?",
     answer: [{
@@ -90,17 +89,20 @@ $(document).ready(function () {
 
   //making countDown function
   function runTimer() {
+    //called from gameOn
     counter = setInterval(function () {
       time = time - 1;
       $('#timer').text(time)
       if (time <= 0) {
-        clearInterval(counter);
         endGame(); //game over
       }
     }, 1000); //setInterval function
   } // function runTimer
 
   function endGame() {
+    //Called from runTimer or done on click
+    //Game over stop clock
+    clearInterval(counter);
     //only interested in those checked
     $('.answered:checked').each(function () {
       if ($(this).data('answer') == true) {
@@ -111,7 +113,7 @@ $(document).ready(function () {
     }) //.each
     //get the no answers by subtracting wins and losses from the number of questions
     game.noAns = questions.length - game.wins - game.losses;
-    // update divs hide/show set text
+    // update divs hide/show set win/loss/un-answered text
     $('#done').hide();
     $('#questAns').hide();
     $('#results').show();
@@ -121,15 +123,9 @@ $(document).ready(function () {
     $('#start').show();
   } //function endGame
 
-  function restart() {
-    $('#results').hide();
-    time = 30;
-    game.noAns = 0;
-    game.losses = 0;
-    game.wins = 0;
-  } // function restart
-
   function gameOn() {
+    //Called from start on click
+    //empty the questions, hide the start button, show the question divs and make those questions
     $('#questAns').empty();
     $('#start').hide();
     $('#questAns').show();
@@ -148,22 +144,28 @@ $(document).ready(function () {
     runTimer();
   } // function gameOn
 
-  //start here and then wait for clicks
+  function start() {
+    //Called from start on click
+    //Hide results and reset game object variables
+    $('#results').hide();
+    time = 30;
+    game.noAns = 0;
+    game.losses = 0;
+    game.wins = 0;
+  } // function start
+
+  //well it all begins here, and then wait for clicks
   $('#results').hide();
   $('#done').hide();
   $('#display').hide();
 
-
   $('#start').on('click', function () {
-    restart();
+    start();
     gameOn();
   }); // start on click
 
   $('#done').on('click', function () {
-    clearInterval(counter);
     endGame();
   }); //done on click
-
-
 
 }); //$(document).ready(function ()
